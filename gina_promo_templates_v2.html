@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GINA — FC Outreach Templates</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0D1F3C;
+  --navy-mid: #162D52;
+  --navy-light: #1E3A6A;
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --gold-dim: rgba(201,168,76,0.25);
+  --white: #FFFFFF;
+  --offwhite: #F8F6F1;
+  --text-body: #2C3E50;
+  --text-muted: #7F8C9A;
+  --border: #E2DDD5;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--offwhite); color: var(--text-body); min-height: 100vh; }
+
+/* HEADER */
+.header {
+  background: var(--navy);
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--gold);
+}
+.header-left { display: flex; align-items: center; gap: 14px; }
+.header-logo { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); letter-spacing: 0.04em; }
+.header-sep { width: 1px; height: 22px; background: rgba(255,255,255,0.2); }
+.header-title { font-size: 12px; color: rgba(255,255,255,0.65); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+.header-badge { background: var(--gold); color: var(--navy); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 3px; }
+
+/* LAYOUT */
+.layout { display: flex; min-height: calc(100vh - 62px); }
+
+/* SIDEBAR */
+.sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  background: var(--white);
+  border-right: 1px solid var(--border);
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 62px);
+  overflow-y: auto;
+}
+.sidebar-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0 18px 10px;
+}
+.insurer-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 18px;
+  background: transparent;
+  border: none;
+  border-left: 3px solid transparent;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+}
+.insurer-btn:hover { background: var(--offwhite); color: var(--navy); }
+.insurer-btn.active { background: rgba(13,31,60,0.05); border-left-color: var(--gold); color: var(--navy); font-weight: 600; }
+.insurer-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.insurer-count {
+  margin-left: auto;
+  background: var(--offwhite);
+  border: 1px solid var(--border);
+  font-size: 10px;
+  color: var(--text-muted);
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+.insurer-btn.active .insurer-count { background: var(--navy); color: var(--white); border-color: var(--navy); }
+.sidebar-divider { height: 1px; background: var(--border); margin: 10px 18px; }
+.all-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 18px;
+  background: transparent;
+  border: none;
+  border-left: 3px solid transparent;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+  margin-bottom: 6px;
+}
+.all-btn:hover { background: var(--offwhite); color: var(--navy); }
+.all-btn.active { background: rgba(13,31,60,0.05); border-left-color: var(--gold); color: var(--navy); font-weight: 600; }
+
+/* MAIN */
+.main { flex: 1; padding: 28px 32px; overflow-y: auto; }
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.section-title-wrap h2 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--navy); }
+.section-title-wrap p { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 12px;
+}
+.search-box input {
+  border: none; background: transparent;
+  font-family: 'DM Sans', sans-serif; font-size: 13px;
+  color: var(--text-body); outline: none; width: 180px;
+}
+.search-box input::placeholder { color: var(--text-muted); }
+
+/* INSURER SECTION */
+.insurer-section { margin-bottom: 36px; }
+.insurer-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.insurer-logo-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--navy);
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+.insurer-logo-dot { width: 10px; height: 10px; border-radius: 50%; }
+.insurer-logo-name { font-size: 13px; font-weight: 700; color: var(--white); letter-spacing: 0.06em; }
+.insurer-section-count { font-size: 12px; color: var(--text-muted); }
+.insurer-section-count span { font-weight: 600; color: var(--navy); }
+
+/* CARD GRID */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+
+/* PROMO CARD */
+.promo-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+.promo-card:hover { box-shadow: 0 4px 20px rgba(13,31,60,0.09); transform: translateY(-1px); }
+.card-stripe { height: 3px; }
+.card-body { padding: 16px 18px; }
+.card-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.card-product {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+.card-occ {
+  font-size: 10px; font-weight: 600; padding: 2px 7px;
+  border-radius: 3px; text-transform: uppercase; letter-spacing: 0.05em;
+}
+.occ-holiday { background: #FFF3E0; color: #E65100; }
+.occ-seasonal { background: #E8F5E9; color: #2E7D32; }
+.occ-festive { background: #FCE4EC; color: #C2185B; }
+.occ-always { background: #EDE7F6; color: #512DA8; }
+
+.card-headline { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--navy); line-height: 1.35; margin-bottom: 10px; }
+.card-offer-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.offer-pill {
+  background: var(--navy);
+  color: var(--gold-light);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 5px;
+  letter-spacing: 0.02em;
+}
+.offer-sub { font-size: 11px; color: var(--text-muted); }
+.card-preview {
+  font-size: 12px; color: var(--text-muted); line-height: 1.6;
+  border-left: 2px solid var(--gold-dim); padding-left: 10px;
+  font-style: italic; margin-bottom: 14px;
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
+.card-actions { display: flex; gap: 8px; }
+.btn-wa, .btn-more {
+  flex: 1; padding: 8px 0; border-radius: 6px; border: none;
+  font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: all 0.15s; letter-spacing: 0.02em;
+}
+.btn-wa { background: #25D366; color: var(--white); display: flex; align-items: center; justify-content: center; gap: 5px; }
+.btn-wa:hover { background: #20BA59; }
+.btn-wa.copied { background: #2E7D32; }
+.btn-more { background: var(--navy); color: var(--white); }
+.btn-more:hover { background: var(--navy-light); }
+
+/* MODAL */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(13,31,60,0.55); z-index: 200;
+  align-items: center; justify-content: center; padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--white); border-radius: 14px;
+  width: 100%; max-width: 580px; max-height: 88vh;
+  overflow-y: auto; box-shadow: 0 24px 64px rgba(13,31,60,0.28);
+}
+.modal-header {
+  background: var(--navy); padding: 18px 22px;
+  border-radius: 14px 14px 0 0;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+}
+.modal-header h3 { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--white); line-height: 1.3; }
+.modal-header p { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 3px; }
+.modal-close {
+  background: rgba(255,255,255,0.12); border: none; color: var(--white);
+  width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+  font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.modal-body { padding: 22px; }
+
+/* CHANNEL TABS */
+.ch-tabs { display: flex; gap: 0; border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+.ch-tab {
+  flex: 1; padding: 9px 0; background: transparent;
+  border: none; font-family: 'DM Sans', sans-serif;
+  font-size: 12px; font-weight: 600; color: var(--text-muted);
+  cursor: pointer; transition: all 0.15s;
+  border-right: 1px solid var(--border);
+}
+.ch-tab:last-child { border-right: none; }
+.ch-tab:hover { background: var(--offwhite); color: var(--navy); }
+.ch-tab.active { background: var(--navy); color: var(--white); }
+
+.msg-box {
+  background: var(--offwhite); border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 16px; font-size: 13px;
+  line-height: 1.75; color: var(--text-body); white-space: pre-wrap;
+  min-height: 180px; display: none; font-family: 'DM Sans', sans-serif;
+}
+.msg-box.active { display: block; }
+
+.modal-actions { display: flex; gap: 10px; margin-top: 14px; }
+.btn-copy-modal, .btn-wa-modal {
+  flex: 1; padding: 11px 0; border-radius: 8px; border: none;
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.15s;
+}
+.btn-copy-modal { background: var(--navy); color: var(--white); }
+.btn-copy-modal:hover { background: var(--navy-light); }
+.btn-copy-modal.copied { background: #2E7D32; }
+.btn-wa-modal { background: #25D366; color: var(--white); display: flex; align-items: center; justify-content: center; gap: 6px; }
+.btn-wa-modal:hover { background: #20BA59; }
+.expiry { font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 10px; }
+
+.empty { text-align: center; padding: 60px 20px; color: var(--text-muted); font-size: 14px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="header-logo">GINA</div>
+    <div class="header-sep"></div>
+    <div class="header-title">FC Outreach Templates</div>
+  </div>
+  <div class="header-badge">Marketing Tools</div>
+</div>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-label">Insurer</div>
+    <button class="all-btn active" onclick="selectInsurer('all', this)">
+      <span style="font-size:14px">🗂</span> All Insurers
+      <span class="insurer-count" id="count-all">6</span>
+    </button>
+    <div class="sidebar-divider"></div>
+    <div id="insurerNav"></div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main" id="mainContent">
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <h2 id="sectionTitle">All Insurers</h2>
+        <p id="sectionSub">Tap WhatsApp to copy instantly, or view all channel formats</p>
+      </div>
+      <div class="search-box">
+        <span style="color:var(--text-muted);font-size:13px">🔍</span>
+        <input type="text" placeholder="Search templates..." oninput="doSearch(this.value)" />
+      </div>
+    </div>
+    <div id="cardContainer"></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <h3 id="modalTitle"></h3>
+        <p id="modalSub"></p>
+      </div>
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="ch-tabs" id="chTabs"></div>
+      <div id="msgBoxes"></div>
+      <div class="modal-actions">
+        <button class="btn-copy-modal" id="btnCopyModal" onclick="copyModal()">📋 Copy Message</button>
+        <button class="btn-wa-modal" onclick="sendWA()">💬 Open in WhatsApp</button>
+      </div>
+      <div class="expiry" id="modalExpiry"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const INSURERS = [
+  { id: 'sompo',   name: 'Sompo',            color: '#E63946' },
+  { id: 'uoi',     name: 'UOI',              color: '#2196F3' },
+  { id: 'direct',  name: 'Direct Insurance', color: '#FF9800' },
+  { id: 'aig',     name: 'AIG',              color: '#1565C0' },
+  { id: 'etiqa',   name: 'Etiqa',            color: '#43A047' },
+  { id: 'income',  name: 'Income Insurance', color: '#7B1FA2' },
+];
+
+const PROMOS = [
+  {
+    id: 1, insurer: 'sompo',
+    product: 'Travel Insurance',
+    headline: 'School Holidays Travel — 55% Off + Free Japan SIM',
+    offer: '55% OFF', offerSub: 'Travel + Free SIM Card',
+    occasion: 'holiday', occasionLabel: 'School Holidays', occasionClass: 'occ-holiday',
+    stripe: '#E63946',
+    expiry: 'Valid for Jun–Jul 2026 school holiday departures',
+    preview: 'Great news for your Japan trip! Sompo is offering 55% off travel insurance plus a free SIM card so you stay connected throughout...',
+    channels: {
+      whatsapp: `Hi [Name] 👋
+
+Great news if you're heading to Japan this school holidays!
+
+🇯🇵 *Sompo Travel Insurance — School Holidays Special*
+✅ 55% OFF your travel premium
+✅ FREE Japan SIM card included
+✅ Covers trip cancellation, overseas medical, baggage & delay
+
+Perfect for families travelling June/July. Takes just minutes to arrange.
+
+Want me to grab a quick quote? Just share your travel dates! 😊
+
+[Your Name] | AAG Financial Advisers`,
+      sms: `Hi [Name], Sompo Travel: 55% off + FREE Japan SIM for school hols. Great for family trips! Reply with travel dates for a quick quote. – [Your Name], AAG`,
+      email: `Subject: School Holidays Travel Insurance — 55% Off + Free Japan SIM (Sompo)
+
+Hi [Name],
+
+Hope you're looking forward to the school holidays! I wanted to share a timely promotion from Sompo:
+
+🎌 55% off travel insurance + complimentary Japan SIM card
+Covers trip cancellation, overseas medical, baggage, and travel delay.
+
+Ideal for families heading to Japan this June/July. Easy to arrange online.
+
+Reply with your travel dates and I'll get you a personalised quote quickly.
+
+Warm regards,
+[Your Name]
+Financial Consultant, AAG Financial Advisers`
+    }
+  },
+  {
+    id: 2, insurer: 'sompo',
+    product: 'Personal Accident',
+    headline: 'Family PA — Back to School Bundle, Free Child Cover',
+    offer: 'Free Child PA', offerSub: 'With Parent PA Policy',
+    occasion: 'holiday', occasionLabel: 'School Season', occasionClass: 'occ-holiday',
+    stripe: '#E63946',
+    expiry: 'Back to school promotion — confirm dates with ops',
+    preview: 'Sompo is offering a free child PA policy bundled with a parent PA plan this school season — great value for young families...',
+    channels: {
+      whatsapp: `Hi [Name] 👋
+
+Back to school season — great time to make sure the family is covered! 🎒
+
+👨‍👩‍👧 *Sompo Family PA — Back to School Bundle*
+✅ FREE child Personal Accident cover
+✅ Bundled with parent PA policy
+✅ Covers school accidents, sports, CCAs
+✅ Affordable annual premiums
+
+PA is one of the most practical policies for families — and with the free child plan, the value is hard to beat.
+
+Want a quick illustration? Happy to walk you through it.
+
+[Your Name] | AAG Financial Advisers`,
+      sms: `Hi [Name], Sompo Back-to-School: Free child PA cover when you take up a parent PA plan. Great value for families. Want a quote? – [Your Name], AAG`,
+      email: `Subject: Free Child PA Cover — Sompo Back to School Bundle
+
+Hi [Name],
+
+With the new school term ahead, I wanted to share a timely Sompo promotion:
+
+🎒 Free child Personal Accident policy bundled with parent PA plan
+Covers accidents at school, sports, and CCAs. Simple, affordable premiums.
+
+Happy to put together a quick illustration for your family. Let me know if you'd like to take a look.
+
+Warm regards,
+[Your Name]
+Financial Consultant, AAG Financial Advisers`
+    }
+  },
+  {
+    id: 3, insurer: 'uoi',
+    product: 'Home Insurance',
+    headline: '25% Off Home Insurance — Protect What Matters Most',
+    offer: '25% OFF', offerSub: 'Home Contents & Fire',
+    occasion: 'seasonal', occasionLabel: 'Seasonal', occasionClass: 'occ-seasonal',
+    stripe: '#2196F3',
+    expiry: 'Limited period — check with ops for end date',
+    preview: 'UOI is offering 25% off home insurance right now — a great moment to get covered or review an existing policy...',
+    channels: {
+      whatsapp: `Hi [Name] 👋
+
+Quick heads-up — UOI has a *25% off Home Insurance* promotion running now 🏠
+
+✅ Fire & structural damage
+✅ Home contents & valuables
+✅ Liability cover
+✅ 25% off annual premium
+
+Great time to get covered or top up what you have. All I need is your address and an estimate of contents value — takes 5 mins!
+
+[Your Name] | AAG Financial Advisers`,
+      sms: `Hi [Name], UOI Home Insurance is 25% off now. Good time to get covered or review your policy. Reply for a quick quote. – [Your Name], AAG`,
+      email: `Subject: 25% Off Home Insurance — UOI Limited Promotion
+
+Hi [Name],
+
+A timely promotion worth flagging — UOI is offering 25% off home insurance for a limited period:
+
+🏡 Fire, contents, valuables & liability coverage
+25% discount on annual premium for new policies.
+
+Many homeowners in Singapore find themselves underinsured on contents. This is an ideal time to put proper cover in place.
+
+Reply with your property type and rough contents value and I'll pull a no-obligation quote.
+
+Best regards,
+[Your Name]
+Financial Consultant, AAG Financial Advisers`
+    }
+  },
+  {
+    id: 4, insurer: 'direct',
+    product: 'Motor Insurance',
+    headline: 'Motor Renewal — S$150 Petrol Voucher on Renewal',
+    offer: 'S$150', offerSub: 'Petrol Voucher on Renewal',
+    occasion: 'always', occasionLabel: 'Ongoing', occasionClass: 'occ-always',
+    stripe: '#FF9800',
+    expiry: 'For renewals — confirm current eligibility with ops',
+    preview: 'Direct Insurance is giving a S$150 petrol voucher for motor renewals or new policies — competitive premiums plus a tangible reward...',
+    channels: {
+      whatsapp: `Hi [Name] 👋
+
+Motor insurance renewal coming up? 🚗
+
+⛽ *Direct Insurance — S$150 Petrol Voucher*
+✅ S$150 voucher on renewal or new policy
+✅ Competitive premiums, comprehensive cover
+✅ NCD preserved
+✅ 24/7 accident assistance
+
+Worth comparing against your current insurer. Share your vehicle details and current renewal price and I'll run a quick comparison for you!
+
+[Your Name] | AAG Financial Advisers`,
+      sms: `Hi [Name], renewing motor insurance? Direct Insurance gives S$150 petrol voucher on renewal. Want me to compare vs your current insurer? – [Your Name], AAG`,
+      email: `Subject: Motor Insurance Renewal — S$150 Petrol Voucher (Direct Insurance)
+
+Hi [Name],
+
+If your motor insurance is due for renewal, worth considering:
+
+🚗 Direct Insurance — S$150 petrol voucher on renewal or new policy
+Comprehensive cover, NCD recognised, 24/7 accident assistance.
+
+Happy to run a quick comparison against your current renewal figure — just share your vehicle reg and current insurer's quote.
+
+Regards,
+[Your Name]
+Financial Consultant, AAG Financial Advisers`
+    }
+  },
+  {
+    id: 5, insurer: 'aig',
+    product: 'SME Insurance',
+    headline: 'SME Restaurant Package — 1st Month Free for New Sign-Ups',
+    offer: '1st Month Free', offerSub: 'SME Restaurant Bundle',
+    occasion: 'always', occasionLabel: 'SME Ongoing', occasionClass: 'occ-always',
+    stripe: '#1565C0',
+    expiry: 'Ongoing — confirm eligibility with ops',
+    preview: 'AIG SME Restaurant Package covers fire, public liability and WICA in one bundle. First month free for new sign-ups — great for F&B owners...',
+    channels: {
+      whatsapp: `Hi [Name] 👋
+
+Know any F&B or restaurant business owners? 🍜
+
+🏢 *AIG SME Restaurant Package — 1st Month Free*
+✅ Fire & property damage
+✅ Public Liability
+✅ Work Injury Compensation (WICA)
+✅ Business interruption option
+✅ 1st month premium free for new sign-ups
+
+One-stop business insurance bundle designed for F&B operators. If this sounds relevant, I'd be happy to arrange a quick brief and quote.
+
+[Your Name] | AAG Financial Advisers`,
+      sms: `Hi [Name], AIG SME Restaurant Package: Fire, Liability + WICA in one bundle. 1st month free. Know any F&B owners? Happy to arrange a quote. – [Your Name], AAG`,
+      email: `Subject: SME Insurance for F&B Businesses — AIG Package, 1st Month Free
+
+Hi [Name],
+
+Something that may be relevant if you run — or know someone who runs — an F&B or restaurant business:
+
+🍽️ AIG SME Restaurant Package — First Month Free (new sign-ups)
+Fire, public liability, WICA, and optional business interruption in one bundle.
+
+Happy to arrange a no-obligation briefing and quote. Just let me know.
+
+Best regards,
+[Your Name]
+Financial Consultant, AAG Financial Advisers`
+    }
+  },
+  {
+    id: 6, insurer: 'etiqa',
+    product: 'Travel Insurance',
+    headline: 'Festive Travel Flash Sale — 40% Off Single Trip & Annual Plans',
+    offer: '40% OFF', offerSub: 'Single Trip & Annual Plans',
+    occasion: 'festive', occasionLabel: 'Festive Season', occasionClass: 'occ-festive',
+    stripe: '#43A047',
+    expiry: 'Festive season promotion — confirm dates with ops',
+    preview: 'Etiqa is running 40% off travel insurance for both single trip and annual plans this festive season — COVID coverage included...',
+    channels: {
+      whatsapp: `Hi [Name] 👋
+
+Planning a festive getaway? ✈️🎉
+
+🌏 *Etiqa Travel — Festive Flash Sale*
+✅ 40% OFF single trip or annual plans
+✅ Trip cancellation, overseas medical, baggage
+✅ COVID-19 coverage included
+✅ Annual plan great for frequent travellers
+
+One of the best travel promos this season. Tell me your travel dates and I'll pull a quote quickly!
+
+[Your Name] | AAG Financial Advisers`,
+      sms: `Hi [Name], Etiqa Festive Travel: 40% off single trip & annual plans. COVID covered. Great deal for frequent travellers. Want a quote? – [Your Name], AAG`,
+      email: `Subject: Festive Travel Insurance Flash Sale — 40% Off with Etiqa
+
+Hi [Name],
+
+Festive travel plans coming up? Worth knowing about this Etiqa promotion:
+
+✈️ 40% off single trip and annual travel plans
+Covers cancellation, overseas medical, baggage, delay. COVID-19 claims included.
+
+Annual plans especially good value if you're travelling more than once this year.
+
+Just share your travel profile and I'll get you a personalised quote.
+
+Warmly,
+[Your Name]
+Financial Consultant, AAG Financial Advisers`
+    }
+  },
+  {
+    id: 7, insurer: 'income',
+    product: 'Home Insurance',
+    headline: 'Enhanced Home Insurance — Free Smart Home Device',
+    offer: 'Free Device', offerSub: 'Smart Home Sensor Bundle',
+    occasion: 'seasonal', occasionLabel: 'Seasonal', occasionClass: 'occ-seasonal',
+    stripe: '#7B1FA2',
+    expiry: 'Seasonal promo — confirm dates with ops',
+    preview: 'Income Insurance is bundling a free smart home device with their enhanced home plan — great hook for tech-savvy homeowners...',
+    channels: {
+      whatsapp: `Hi [Name] 👋
+
+Something a bit different for homeowners! 🏠
+
+🔒 *Income Insurance — Enhanced Home + Free Smart Device*
+✅ Comprehensive home contents & fire cover
+✅ Free smart home sensor bundled in
+✅ Water damage, renovation cover option
+✅ New homeowner? Perfect timing
+
+A nice value-add on top of solid home coverage. Want me to get you a quick quote?
+
+[Your Name] | AAG Financial Advisers`,
+      sms: `Hi [Name], Income Insurance: Enhanced Home plan + FREE smart home device. Great for new homeowners. Want a quote? – [Your Name], AAG`,
+      email: `Subject: Home Insurance + Free Smart Device — Income Insurance Promotion
+
+Hi [Name],
+
+A home insurance promotion worth sharing, especially for newer homeowners:
+
+🏡 Income Insurance Enhanced Home Plan — Free smart home sensor bundle included
+Covers contents, fire, water damage, with renovation cover available.
+
+The smart device add-on is a nice touch. Happy to run a quick quote if you're interested.
+
+Best regards,
+[Your Name]
+Financial Consultant, AAG Financial Advisers`
+    }
+  }
+];
+
+let activeInsurer = 'all';
+let searchTerm = '';
+let currentPromo = null;
+let activeChannel = 'whatsapp';
+
+function getInsurer(id) { return INSURERS.find(i => i.id === id); }
+
+function buildSidebar() {
+  const nav = document.getElementById('insurerNav');
+  nav.innerHTML = INSURERS.map(ins => {
+    const count = PROMOS.filter(p => p.insurer === ins.id).length;
+    return `<button class="insurer-btn" onclick="selectInsurer('${ins.id}', this)" data-insurer="${ins.id}">
+      <span class="insurer-dot" style="background:${ins.color}"></span>
+      ${ins.name}
+      <span class="insurer-count" id="count-${ins.id}">${count}</span>
+    </button>`;
+  }).join('');
+  document.getElementById('count-all').textContent = PROMOS.length;
+}
+
+function selectInsurer(id, btn) {
+  activeInsurer = id;
+  document.querySelectorAll('.insurer-btn, .all-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const ins = id === 'all' ? null : getInsurer(id);
+  document.getElementById('sectionTitle').textContent = ins ? ins.name : 'All Insurers';
+  renderCards();
+}
+
+function doSearch(val) {
+  searchTerm = val.toLowerCase();
+  renderCards();
+}
+
+function filtered() {
+  return PROMOS.filter(p => {
+    const matchInsurer = activeInsurer === 'all' || p.insurer === activeInsurer;
+    const matchSearch = !searchTerm ||
+      p.headline.toLowerCase().includes(searchTerm) ||
+      p.product.toLowerCase().includes(searchTerm) ||
+      getInsurer(p.insurer).name.toLowerCase().includes(searchTerm);
+    return matchInsurer && matchSearch;
+  });
+}
+
+function renderCards() {
+  const container = document.getElementById('cardContainer');
+  const promos = filtered();
+
+  if (promos.length === 0) {
+    container.innerHTML = '<div class="empty">No templates found.</div>';
+    return;
+  }
+
+  if (activeInsurer === 'all') {
+    // Group by insurer
+    const byInsurer = {};
+    promos.forEach(p => {
+      if (!byInsurer[p.insurer]) byInsurer[p.insurer] = [];
+      byInsurer[p.insurer].push(p);
+    });
+    container.innerHTML = Object.entries(byInsurer).map(([ins, ps]) => {
+      const insData = getInsurer(ins);
+      return `<div class="insurer-section">
+        <div class="insurer-section-header">
+          <div class="insurer-logo-pill">
+            <span class="insurer-logo-dot" style="background:${insData.color}"></span>
+            <span class="insurer-logo-name">${insData.name}</span>
+          </div>
+          <span class="insurer-section-count"><span>${ps.length}</span> template${ps.length > 1 ? 's' : ''}</span>
+        </div>
+        <div class="card-grid">${ps.map(cardHTML).join('')}</div>
+      </div>`;
+    }).join('');
+  } else {
+    container.innerHTML = `<div class="card-grid">${promos.map(cardHTML).join('')}</div>`;
+  }
+}
+
+function cardHTML(p) {
+  return `<div class="promo-card">
+    <div class="card-stripe" style="background:${p.stripe}"></div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-product">${p.product}</span>
+        <span class="card-occ ${p.occasionClass}">${p.occasionLabel}</span>
+      </div>
+      <div class="card-headline">${p.headline}</div>
+      <div class="card-offer-row">
+        <span class="offer-pill">${p.offer}</span>
+        <span class="offer-sub">${p.offerSub}</span>
+      </div>
+      <div class="card-preview">${p.preview}</div>
+      <div class="card-actions">
+        <button class="btn-wa" id="wa-${p.id}" onclick="quickCopyWA(${p.id})">💬 Copy WhatsApp</button>
+        <button class="btn-more" onclick="openModal(${p.id})">All Formats</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function quickCopyWA(id) {
+  const p = PROMOS.find(x => x.id === id);
+  navigator.clipboard.writeText(p.channels.whatsapp).then(() => {
+    const btn = document.getElementById('wa-' + id);
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function openModal(id) {
+  currentPromo = PROMOS.find(p => p.id === id);
+  activeChannel = 'whatsapp';
+  const ins = getInsurer(currentPromo.insurer);
+  document.getElementById('modalTitle').textContent = currentPromo.headline;
+  document.getElementById('modalSub').textContent = ins.name + ' · ' + currentPromo.product;
+  document.getElementById('modalExpiry').textContent = '⏱ ' + currentPromo.expiry;
+
+  const chs = [
+    { id: 'whatsapp', label: '💬 WhatsApp' },
+    { id: 'sms', label: '📱 SMS' },
+    { id: 'email', label: '📧 Email' }
+  ];
+  document.getElementById('chTabs').innerHTML = chs.map(c =>
+    `<button class="ch-tab ${c.id === 'whatsapp' ? 'active' : ''}" onclick="switchCh('${c.id}',this)">${c.label}</button>`
+  ).join('');
+  document.getElementById('msgBoxes').innerHTML = chs.map(c =>
+    `<div class="msg-box ${c.id === 'whatsapp' ? 'active' : ''}" id="msgbox-${c.id}">${currentPromo.channels[c.id]}</div>`
+  ).join('');
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function switchCh(ch, btn) {
+  activeChannel = ch;
+  document.querySelectorAll('.ch-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.msg-box').forEach(b => b.classList.remove('active'));
+  document.getElementById('msgbox-' + ch).classList.add('active');
+}
+
+function closeModal(e) { if (e.target === document.getElementById('modalOverlay')) closeModalDirect(); }
+function closeModalDirect() { document.getElementById('modalOverlay').classList.remove('open'); }
+
+function copyModal() {
+  navigator.clipboard.writeText(currentPromo.channels[activeChannel]).then(() => {
+    const btn = document.getElementById('btnCopyModal');
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy Message'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function sendWA() {
+  window.open('https://wa.me/?text=' + encodeURIComponent(currentPromo.channels.whatsapp), '_blank');
+}
+
+buildSidebar();
+renderCards();
+</script>
+</body>
+</html>
